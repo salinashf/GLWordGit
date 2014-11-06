@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">RubikCubeAnimationExample</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_rubik_cube_animation_example">RubikCubeAnimationExampleActivity</string>
+    <string name="hello_world">hello_world</string>
+    <string name="title">hsalinas</string>
+<string name="action_settings">action_settings</string>
+</resources>
