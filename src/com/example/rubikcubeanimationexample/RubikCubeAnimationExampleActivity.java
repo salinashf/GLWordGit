@@ -1,9 +1,13 @@
 package com.example.rubikcubeanimationexample;
 import java.util.Random;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.Toast;
 public class RubikCubeAnimationExampleActivity extends Activity implements KubeRenderer.AnimationCallback {
     private GLWorld makeGLWorld()
     {
@@ -174,11 +178,26 @@ public class RubikCubeAnimationExampleActivity extends Activity implements KubeR
         super.onCreate(savedInstanceState);
         // We don’t need a title either.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mView = new GLSurfaceView(getApplication());
-        mRenderer = new KubeRenderer(makeGLWorld(), this);
-        mView.setRenderer(mRenderer);
-        setContentView(mView);
+       
+        if (hasGLES20()) {
+        	  mView = new GLSurfaceView(getApplication());
+              mRenderer = new KubeRenderer(makeGLWorld(), this);
+              mView.setRenderer(mRenderer);
+              setContentView(mView);
+        } else {
+           Toast.makeText(this, "Not Soporta OpenGl 2 ", Toast.LENGTH_LONG).show();
+        }
+      
+        
+        
     }
+   
+    private boolean hasGLES20() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo info = am.getDeviceConfigurationInfo();
+        return info.reqGlEsVersion >= 0x20000;
+    }
+    
     @Override
     protected void onResume()
     {
