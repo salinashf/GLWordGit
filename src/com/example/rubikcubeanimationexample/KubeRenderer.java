@@ -3,6 +3,9 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 class KubeRenderer implements GLSurfaceView.Renderer {
+    private GLWorld mWorld;
+    private AnimationCallback mCallback;
+    private float mAngle;
     public interface AnimationCallback {
         void animate();
     }
@@ -47,7 +50,5 @@ class KubeRenderer implements GLSurfaceView.Renderer {
     public float getAngle() {
         return mAngle;
     }
-    private GLWorld mWorld;
-    private AnimationCallback mCallback;
-    private float mAngle;
+
 }
